@@ -19,7 +19,11 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userDao.findById(id);
+        User user = userDao.findById(id);
+        if (user == null) {
+            throw new RuntimeException("User not found with id: " + id);
+        }
+        return user;
     }
 
     public void saveUser(User user) {
@@ -27,10 +31,13 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        userDao.save(user);
+        // Проверяем существование пользователя
+        getUserById(user.getId());
+        userDao.update(user);
     }
 
     public void deleteUser(Long id) {
-        userDao.delete(id);
+        User user = getUserById(id);
+        userDao.delete(user);
     }
 }

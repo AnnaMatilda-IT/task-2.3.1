@@ -11,20 +11,20 @@
     <input type="hidden" name="id" th:value="${user.id}">
 
     <div>
-        <label>First Name:</label>
-        <input type="text" name="firstName" th:value="${user.firstName}" required>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:value="${user.firstName}" required>
     </div>
     <div>
-        <label>Last Name:</label>
-        <input type="text" name="lastName" th:value="${user.lastName}" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:value="${user.lastName}" required>
     </div>
     <div>
-        <label>Email:</label>
-        <input type="email" name="email" th:value="${user.email}" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${user.email}" required>
     </div>
     <div>
-        <label>Age:</label>
-        <input type="number" name="age" th:value="${user.age}">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" th:value="${user.age}">
     </div>
     <button type="submit">Update</button>
     <a th:href="@{/users}">Cancel</a>

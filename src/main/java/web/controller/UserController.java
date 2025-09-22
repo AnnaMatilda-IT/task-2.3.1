@@ -3,9 +3,7 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
@@ -22,16 +20,13 @@ public class UserController {
     }
 
     @GetMapping("/addUser")
-    public String showAddUserForm() {
+    public String showAddUserForm(Model model) {
+        model.addAttribute("user", new User()); // Добавляем пустой объект User в модель
         return "add-user";
     }
 
     @PostMapping("/addUser")
-    public String addUser(@RequestParam String firstName,
-                          @RequestParam String lastName,
-                          @RequestParam String email,
-                          @RequestParam Integer age) {
-        User user = new User(firstName, lastName, email, age);
+    public String addUser(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:/users";
     }
@@ -44,16 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/editUser")
-    public String updateUser(@RequestParam Long id,
-                             @RequestParam String firstName,
-                             @RequestParam String lastName,
-                             @RequestParam String email,
-                             @RequestParam Integer age) {
-        User user = userService.getUserById(id);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setAge(age);
+    public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/users";
     }

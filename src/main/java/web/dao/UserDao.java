@@ -23,18 +23,15 @@ public class UserDao {
     }
 
     public User save(User user) {
-        if (user.getId() == null) {
-            entityManager.persist(user);
-            return user;
-        } else {
-            return entityManager.merge(user);
-        }
+        entityManager.persist(user);
+        return user;
     }
 
-    public void delete(Long id) {
-        User user = entityManager.find(User.class, id);
-        if (user != null) {
-            entityManager.remove(user);
-        }
+    public User update(User user) {
+        return entityManager.merge(user);
+    }
+
+    public void delete(User user) {
+        entityManager.remove(user);
     }
 }
