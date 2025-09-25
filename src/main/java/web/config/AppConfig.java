@@ -14,6 +14,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 public class AppConfig {
     public AppConfig() {
-        System.out.println("AppConfig initialized!"); // Debug сообщение
+        System.out.println("AppConfig OK!"); // Debug сообщение
     }
 }
